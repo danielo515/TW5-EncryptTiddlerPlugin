@@ -6,4 +6,4 @@ tags: button encrypt export
 title: $:/plugins/danielo/encryptTiddler/openPopup
 type: text/vnd.tiddlywiki
 
-<$reveal state="$:/state/encrypt" type="nomatch" text={{!!title}} animate="no"><$button set="$:/state/encrypt" setTo={{!!title}} class="btn-invisible">{{$:/plugins/danielo/encryptTiddler/unlocked}}</$button></$reveal><$reveal state="$:/state/encrypt" type="match" text={{!!title}} animate="no"><$button set="$:/state/encrypt" setTo="" class="btn-invisible">{{$:/plugins/danielo/encryptTiddler/unlocked}}</$button></$reveal>
+<$reveal state="$:/state/encrypt" type="nomatch" text={{!!title}} animate="no"><$button set="$:/state/encrypt" setTo={{!!title}} class="tc-btn-invisible">{{$:/plugins/danielo/encryptTiddler/unlocked}}</$button></$reveal><$reveal state="$:/state/encrypt" type="match" text={{!!title}} animate="no"><$button set="$:/state/encrypt" setTo="" class="tc-btn-invisible">{{$:/plugins/danielo/encryptTiddler/unlocked}}</$button></$reveal>

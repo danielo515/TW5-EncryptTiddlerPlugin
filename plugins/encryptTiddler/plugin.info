@@ -2,8 +2,8 @@
 	"title": "$:/plugins/danielo/encryptTiddler",
 	"description": "adds the ability to encrypt single tiddlers",
 	"author": "DanieloRodrigez",
-	"version": "0.0.3",
-	"core-version": ">=5.0.8",
+	"version": "2.0.1",
+	"core-version": ">=5.1.1",
 	"source": "https://github.com/yourgithub/pluginname",
 	"plugin-type": "plugin"
 }
