@@ -4,7 +4,7 @@ description: add the hability to encrypt individual tiddlers
 modified: 20141029152631265
 modifier: Danielo Rodriguez
 tags: index plugins
-title: Encrypt-Tiddler
+title: $:/plugins/danielo/encryptTiddler/Encrypt-Tiddler
 type: text/vnd.tiddlywiki
 caption: readme
 
@@ -19,9 +19,3 @@ This widget adds the ability to encrypt your tiddlers individually. This have se
 * I didn't try this, but theoretically you can apply double encryption by encrypting your wiki too.
 
 Tried in TW 5.1.4
-
-[[$:/plugins/danielo/encryptTiddler]]
-
-''Try it out!'' Here you have an encrypted tiddler. The password is: `tiddlywiki`
-
-[[Encrypt-test]]
