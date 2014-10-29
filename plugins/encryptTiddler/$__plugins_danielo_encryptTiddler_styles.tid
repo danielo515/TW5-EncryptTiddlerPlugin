@@ -1,0 +1,35 @@
+created: 20140406110705085
+creator: pepito
+modified: 20140608121510064
+modifier: pepito
+tags: $:/tags/stylesheet encrypt export
+title: $:/plugins/danielo/encryptTiddler/styles
+type: text/plain
+
+.tw-password-field {
+	display: inline-block;
+	width: 55%;
+       font-size:1em;
+       line-height:0;
+       margin:0;
+}
+
+
+/*It is for use in combination with tw-block-dropdown */
+.tw-crypt-dropdown{ 
+      line-height:0;
+      padding:0 5px}
+
+.tw-password-field input{
+       font-size:0.5em;
+
+}
+
+.tw-crypt-button {
+	display: inline-block;
+	width: 10%;
+}
+
+.tw-crypt-button button{
+	font-size:0.5em;
+}
