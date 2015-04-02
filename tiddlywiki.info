@@ -5,6 +5,7 @@
         "tiddlywiki/codemirror",
         "tiddlywiki/highlight"
     ],
+
     "themes": [
         "tiddlywiki/vanilla",
         "tiddlywiki/snowwhite"
