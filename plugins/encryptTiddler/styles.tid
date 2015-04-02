@@ -16,7 +16,7 @@ type: text/plain
 
 
 /*It is for use in combination with tc-block-dropdown */
-.tw-crypt-dropdown{ 
+.tw-crypt-dropdown{
       line-height:0;
       padding:0 5px}
 

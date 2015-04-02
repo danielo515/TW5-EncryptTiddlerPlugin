@@ -1,12 +1,3 @@
-created: 20140405192526957
-creator: Danielo
-modified: 20140608121405678
-modifier: pepito
-module-type: widget
-tags: encrypt export
-title: $:/plugins/danielo/encryptTiddler/encrypttiddler.js
-type: application/javascript
-
 /*\
 title: $:/plugins/danielo/encryptTiddler/encrypttiddler.js
 type: application/javascript
@@ -73,7 +64,7 @@ encryptTiddlerWidget.prototype.refresh = function(changedTiddlers) {
 		this.refreshSelf();
 		return true;
 	} else {
-		return this.refreshChildren(changedTiddlers);		
+		return this.refreshChildren(changedTiddlers);
 	}
 };
 
@@ -85,7 +76,7 @@ encryptTiddlerWidget.prototype.handleEncryptevent = function(event){
 		var fields={text:"!This is an encrypted Tiddler",
 					encrypted:this.encryptFields(title,password)};
 		this.saveTiddler(tiddler,fields);
-		
+
 	}
 };
 
@@ -106,7 +97,7 @@ encryptTiddlerWidget.prototype.saveTiddler=function(tiddler,fields){
 encryptTiddlerWidget.prototype.encryptFields = function (title,password){
 	var jsonData=this.wiki.getTiddlerAsJson(title);
 	return $tw.crypto.encrypt(jsonData,password);
-	
+
 };
 
 encryptTiddlerWidget.prototype.decryptFields = function(tiddler,password){
@@ -125,7 +116,7 @@ encryptTiddlerWidget.prototype.getPassword = function(){
 		this.saveTiddler(tiddler,this.clearNonStandardFields(tiddler)); //reset password tiddler
 		return password;
 	}
-	
+
 	return false
 };
 
