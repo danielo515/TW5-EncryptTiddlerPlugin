@@ -49,6 +49,7 @@ Compute the internal state of the widget
 encryptTiddlerWidget.prototype.execute = function() {
 	// Get attributes
 	 this.tiddlerTitle=this.getAttribute("tiddler",this.getVariable("currentTiddler"));
+	 this.filter=this.getAttribute("filter",undefined);
  	 this.passwordTiddler=this.getAttribute("passwordTiddler");
 	// Construct the child widgets
 	console.log(this.targetTiddler);
@@ -68,25 +69,44 @@ encryptTiddlerWidget.prototype.refresh = function(changedTiddlers) {
 	}
 };
 
-encryptTiddlerWidget.prototype.handleEncryptevent = function(event){
-	var password =this.getPassword();
-	var title=this.tiddlerTitle;
-	var tiddler = this.wiki.getTiddler(title);
-	if(tiddler && password){
-		var fields={text:"!This is an encrypted Tiddler",
-					encrypted:this.encryptFields(title,password)};
-		this.saveTiddler(tiddler,fields);
+encryptTiddlerWidget.prototype.getTiddlersToProcess = function(){
+	if(this.filter){ //we have a filter to work with
+		return this.wiki.filterTiddlers(this.filter)
+	}else{ //single tiddler case
+		var tiddler = this.wiki.getTiddler(this.tiddlerTitle);
+		return tiddler? [tiddler] : [];
+	}
+};
 
+encryptTiddlerWidget.prototype.handleEncryptevent = function(event){
+	var password = this.getPassword();
+	var tiddlers = this.getTiddlersToProcess();
+
+	if(tiddlers.length > 0 && password){
+		var self = this;
+		$tw.utils.each(tiddlers, function(title){
+			var tiddler = self.wiki.getTiddler(title);
+			var fields={text:"!This is an encrypted Tiddler",
+								  encrypted:self.encryptFields(title,password)};
+			self.saveTiddler(tiddler,fields);
+		});
+
+	}else{
+		console.log("We did not find any tiddler to encrypt or password not set!")
 	}
 };
 
 encryptTiddlerWidget.prototype.handleDecryptevent = function(event){
 	var password =this.getPassword();
-	var title=this.tiddlerTitle;
-	var tiddler = this.wiki.getTiddler(title);
-	if(tiddler && password){
-		var fields=this.decryptFields(tiddler,password);
-		if(fields)this.saveTiddler(tiddler,fields);
+	var tiddlers = this.getTiddlersToProcess();
+
+	if(tiddlers.length > 0 && password){
+		var self = this;
+		$tw.utils.each(tiddlers, function(title){
+			var tiddler = self.wiki.getTiddler(title);
+			var fields = self.decryptFields(tiddler,password);
+			if(fields)self.saveTiddler(tiddler,fields);
+		});
 	}
 };
 
@@ -105,7 +125,7 @@ encryptTiddlerWidget.prototype.decryptFields = function(tiddler,password){
 		if(JSONfields!==null){
 			return JSON.parse(JSONfields);
 		}
-		console.log("Error decrypting. Probably bad password")
+		console.log("Error decrypting."+tiddler.fields.title+" Probably bad password")
 		return false
 };
 
