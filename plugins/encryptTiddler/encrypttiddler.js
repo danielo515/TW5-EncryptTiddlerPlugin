@@ -125,7 +125,7 @@ encryptTiddlerWidget.prototype.decryptFields = function(tiddler,password){
 		if(JSONfields!==null){
 			return JSON.parse(JSONfields);
 		}
-		console.log("Error decrypting."+tiddler.fields.title+" Probably bad password")
+		console.log("Error decrypting "+tiddler.fields.title+". Probably bad password")
 		return false
 };
 
