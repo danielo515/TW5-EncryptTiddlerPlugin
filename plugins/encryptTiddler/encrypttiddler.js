@@ -61,7 +61,7 @@ Selectively refreshes the widget if needed. Returns true if the widget or any of
 */
 encryptTiddlerWidget.prototype.refresh = function(changedTiddlers) {
 	var changedAttributes = this.computeAttributes();
-	if(changedAttributes.tiddler) {
+	if(changedAttributes.tiddler || changedAttributes.filter) {
 		this.refreshSelf();
 		return true;
 	} else {
@@ -71,10 +71,10 @@ encryptTiddlerWidget.prototype.refresh = function(changedTiddlers) {
 
 encryptTiddlerWidget.prototype.getTiddlersToProcess = function(){
 	if(this.filter){ //we have a filter to work with
-		return this.wiki.filterTiddlers(this.filter)
+		return this.wiki.filterTiddlers(this.filter);
 	}else{ //single tiddler case
 		var tiddler = this.wiki.getTiddler(this.tiddlerTitle);
-		return tiddler? [tiddler] : [];
+		return tiddler? [tiddler.fields.title] : [];
 	}
 };
 
