@@ -6,5 +6,6 @@ tiddlywiki.cmd ^
 	.\ ^
 	--verbose ^
 	--build ^
-	|| exit 1
 
+move output\index.html index.html
+move output\readme.md README.MD
