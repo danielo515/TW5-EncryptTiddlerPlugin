@@ -1,0 +1,9 @@
+created: 20150404110553072
+modified: 20150404110618430
+tags: 
+title: Installation
+type: text/vnd.tiddlywiki
+
+Just drag and drop the following ling to your tiddlywiki:
+
+[[$:/plugins/danielo/encryptTiddler]]

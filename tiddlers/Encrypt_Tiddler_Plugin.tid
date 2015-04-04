@@ -1,0 +1,7 @@
+created: 20150404110041699
+modified: 20150404110049398
+tags: 
+title: Encrypt Tiddler Plugin
+type: text/vnd.tiddlywiki
+
+{{$:/plugins/danielo/encryptTiddler/Encrypt-Tiddler}}

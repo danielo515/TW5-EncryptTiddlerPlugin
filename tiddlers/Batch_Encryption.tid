@@ -1,0 +1,13 @@
+created: 20150404110105716
+modified: 20150404110357587
+tags:
+title: Batch Encryption
+type: text/vnd.tiddlywiki
+
+One of the new features of 2.1 version is the ability to encrypt several tiddlers at once. To do so go to tiddlywiki's control panel and under //Encrypt Tiddlers// tab select the tab "Batch Encryption". Each tiddler will be encrypted individually.
+
+<$button>
+<$action-setfield $tiddler="$:/state/tab-1749438307" $field="text" $value="$:/plugins/danielo/encryptTiddler/control-panel"/>
+<$action-navigate $to="$:/ControlPanel"/>
+Go to Control Panel "Batch Encryption" tab
+</$button>
