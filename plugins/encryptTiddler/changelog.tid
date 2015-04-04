@@ -1,7 +1,7 @@
 title: $:/plugins/danielo/encryptTiddler/Changelog
 
-! 2.1
-* Added control panel
-* Added ability to [[batch encrypt and decrypt tiddlers|Batch Encryption]]
-* Added some documentation an language strings
+!! V2.1
+* Added control panel.
+* Added ability to batch encrypt and decrypt tiddlers.
+* Added some documentation an language strings.
 

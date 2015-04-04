@@ -7,6 +7,7 @@ tiddlywiki.cmd ^
 	--verbose ^
 	--build ^
 
-move output\index.html index.html
-move output\readme.md README.MD
+move /Y output\index.html index.html
+move /Y output\readme.md README.MD
 git add index.html
+git add README.MD

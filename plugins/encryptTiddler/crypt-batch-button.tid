@@ -1,0 +1,12 @@
+creator: Danielo
+title: $:/plugins/danielo/encryptTiddler/crypt-batch-button
+
+<span title="Encrypt/Decrypt tiddler" class="pc-batch-controls">
+<$reveal state=<<qualify "$:/state/encrypt">> type="nomatch" text={{!!title}} animate="no"><$button set=<<qualify "$:/state/encrypt">> setTo={{!!title}} class="tc-btn-invisible">{{$:/plugins/danielo/encryptTiddler/unlocked}}</$button></$reveal><$reveal state=<<qualify "$:/state/encrypt">> type="match" text={{!!title}} animate="no"><$button set=<<qualify "$:/state/encrypt">> setTo="" class="tc-btn-invisible">{{$:/plugins/danielo/encryptTiddler/unlocked}}</$button></$reveal>
+<$encryptTiddler passwordTiddler="$:/temp/password" filter={{$:/temp/encrypt/filter}}><$reveal state=<<qualify "$:/state/encrypt">> type="match" text={{!!title}} animate="yes">
+<div class="tc-block-dropdown tw-crypt-dropdown">
+<span class="tw-password-field"><$edit-text tiddler="$:/temp/password" tag="input" type="password" default="" placeholder="password" class="tc-edit-texteditor"/></span>
+<span class="tw-crypt-button"> <$button message="tw-encrypt-tiddler"  set=<<qualify "$:/state/encrypt">> setTo="" >Encrypt</$button> <$button message="tw-decrypt-tiddler" set=<<qualify "$:/state/encrypt">> setTo="" >Decrypt</$button></span>
+</div>
+</$reveal></$encryptTiddler>
+</span>
