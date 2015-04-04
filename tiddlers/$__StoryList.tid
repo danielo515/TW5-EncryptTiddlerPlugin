@@ -1,5 +1,3 @@
-created: 20150404104834445
-list: $:/ControlPanel $:/plugins/danielo/encryptTiddler $:/plugins/danielo/encryptTiddler/Encrypt-Tiddler [[Batch Encrypt]] [[Tiddler test]] test
+list: [[Encrypt Tiddler Plugin]] [[Batch Encryption]] Installation ChangeLog
 title: $:/StoryList
-type: text/vnd.tiddlywiki
 
