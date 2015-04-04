@@ -9,5 +9,12 @@
     "themes": [
         "tiddlywiki/vanilla",
         "tiddlywiki/snowwhite"
-    ]
+    ],
+
+    "build": {
+  		"index": [
+  			"--rendertiddler","$:/plugins/tiddlywiki/tiddlyweb/save/offline","index.html","text/plain"],
+  		"readme": [
+  			"--rendertiddler","Encrypt Tiddler Plugin","readme.md","text/html"]
+	}
 }
