@@ -133,13 +133,15 @@ encryptTiddlerWidget.prototype.getPassword = function(){
 	var tiddler=this.wiki.getTiddler(this.passwordTiddler);
 	if(tiddler){
 		var password=tiddler.fields.text;
-		this.saveTiddler(tiddler,this.clearNonStandardFields(tiddler)); //reset password tiddler
+		this.saveTiddler(tiddler); //reset password tiddler
 		return password;
 	}
 
 	return false
 };
 
+// This function erases every field of a tiddler that is not standard and also
+// the text field
 encryptTiddlerWidget.prototype.clearNonStandardFields =function(tiddler) {
 	var standardFieldNames = "title tags modified modifier created creator".split(" ");
 		var clearFields = {};
