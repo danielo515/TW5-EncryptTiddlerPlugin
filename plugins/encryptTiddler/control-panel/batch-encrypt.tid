@@ -1,0 +1,51 @@
+title: $:/plugins/danielo/encryptTiddler/control-panel/batch-encrypt
+caption: Batch Encryption
+
+\define lingo-base() $:/language/Search/
+<<lingo Filter/Hint>>
+{{$:/plugins/danielo/encryptTiddler/language/batch}}
+
+<$linkcatcher to="$:/temp/encrypt/filter">
+
+<div class="tc-search tc-advanced-search">
+<$edit-text tiddler="$:/temp/encrypt/filter" type="search" tag="input" default="" placeholder="filter tiddlers"/>
+<$button popup=<<qualify "$:/state/filterDropdown">> class="tc-btn-invisible">
+{{$:/core/images/down-arrow}}
+</$button>
+<$reveal state="$:/temp/encrypt/filter" type="nomatch" text="">
+<$button class="tc-btn-invisible">
+<$action-setfield $tiddler="$:/temp/encrypt/filter" $field="text" $value=""/>
+{{$:/core/images/close-button}}
+</$button>
+
+
+<$edit-text tag="input" tiddler="$:/temp/password" placeholder="password" type="password" default="" col="4"/><$encryptTiddler passwordTiddler="$:/temp/password" filter={{$:/temp/encrypt/filter}}>
+<$button message="tw-encrypt-tiddler">
+Encrypt
+</$button>
+<$button message="tw-decrypt-tiddler">
+Decrypt
+</$button>
+</$encryptTiddler>
+</$reveal>
+</div>
+
+<div class="tc-block-dropdown-wrapper">
+<$reveal state=<<qualify "$:/state/filterDropdown">> type="nomatch" text="" default="">
+<div class="tc-block-dropdown tc-edit-type-dropdown">
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/Filter]!sort[]] -[[$:/core/Filters/SystemTags]] -[[$:/core/Filters/AllTags]]"><$link to={{!!filter}}><$transclude field="description"/></$link>
+</$list>
+</div>
+</$reveal>
+</div>
+
+</$linkcatcher>
+
+<$reveal state="$:/temp/encrypt/filter" type="nomatch" text="">
+<$set name="resultCount" value="""<$count filter={{$:/temp/encrypt/filter}}/>""">
+<div class="tc-search-results">
+<<lingo Filter/Matches>>
+<$list filter={{$:/temp/encrypt/filter}} template="$:/plugins/danielo/encryptTiddler/ui/listItemTemplate"/>
+</div>
+</$set>
+</$reveal>

@@ -1,0 +1,10 @@
+title: $:/plugins/danielo/encryptTiddler/ui/listItemTemplate
+
+<div class="tc-menu-list-item">
+<$link to={{!!title}}>
+<$view field="title"/>
+<$list filter="[all[current]has[encrypted]]">
+<span class="pc-listItem-lock">{{$:/core/images/locked-padlock}}</span>
+</$list>
+</$link>
+</div>
