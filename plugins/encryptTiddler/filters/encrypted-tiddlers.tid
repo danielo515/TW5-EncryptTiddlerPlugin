@@ -1,0 +1,4 @@
+title: $:/plugins/danielo/encryptTiddler/Filters/encrypted-tiddlers
+description: All encrypted tiddlers
+filter: [has[encrypted]]
+tags: $:/tags/Filter
