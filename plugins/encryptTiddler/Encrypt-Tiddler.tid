@@ -8,7 +8,7 @@ title: $:/plugins/danielo/encryptTiddler/Encrypt-Tiddler
 type: text/vnd.tiddlywiki
 caption: readme
 
-This widget adds the ability to encrypt your tiddlers individually. This have several advantages:
+This plugin adds the ability to encrypt your tiddlers individually. This have several advantages:
 
 * You can specify a different password for each tiddler if you want.
 * You don't have to encrypt your whole wiky.
@@ -17,5 +17,3 @@ This widget adds the ability to encrypt your tiddlers individually. This have se
 * You can even encrypt images.
 * You can have sensible data in a day to day wiky.
 * I didn't try this, but theoretically you can apply double encryption by encrypting your wiki too.
-
-Tried in TW 5.1.4
