@@ -9,3 +9,4 @@ tiddlywiki.cmd ^
 
 move output\index.html index.html
 move output\readme.md README.MD
+git add index.html
