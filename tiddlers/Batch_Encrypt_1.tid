@@ -1,0 +1,46 @@
+created: 20150403162250297
+modified: 20150404084932888
+tags: 
+title: Batch Encrypt 1
+type: text/vnd.tiddlywiki
+
+\define lingo-base() $:/language/Search/
+<<lingo Filter/Hint>>
+
+<$linkcatcher to="$:/temp/encrypt/filter">
+
+<div class="tc-search tc-advanced-search">
+<$edit-text tiddler="$:/temp/encrypt/filter" type="search" tag="input" default="" placeholder="filter tiddlers"/>
+<$button popup=<<qualify "$:/state/filterDropdown">> class="tc-btn-invisible">
+{{$:/core/images/down-arrow}}
+</$button>
+<$reveal state="$:/temp/encrypt/filter" type="nomatch" text="">
+<$button class="tc-btn-invisible">
+<$action-setfield $tiddler="$:/temp/encrypt/filter" $field="text" $value=""/>
+{{$:/core/images/close-button}}
+</$button>
+<$transclude tiddler="$:/plugins/danielo/encryptTiddler/crypt-batch-button"/>
+</$reveal>
+</div>
+
+<div class="tc-block-dropdown-wrapper">
+<$reveal state=<<qualify "$:/state/filterDropdown">> type="nomatch" text="" default="">
+<div class="tc-block-dropdown tc-edit-type-dropdown">
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/Filter]]"><$link to={{!!filter}}><$transclude field="description"/></$link>
+</$list>
+</div>
+</$reveal>
+</div>
+
+</$linkcatcher>
+
+<$reveal state="$:/temp/encrypt/filter" type="nomatch" text="">
+<$set name="resultCount" value="""<$count filter={{$:/temp/encrypt/filter}}/>""">
+<div class="tc-search-results">
+<<lingo Filter/Matches>>
+<$list filter={{$:/temp/encrypt/filter}} template="$:/core/ui/ListItemTemplate"/>
+</div>
+</$set>
+</$reveal>
+
+
