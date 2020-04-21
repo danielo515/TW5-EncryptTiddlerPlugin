@@ -50,7 +50,8 @@ encryptTiddlerWidget.prototype.execute = function() {
 	// Get attributes
 	 this.tiddlerTitle=this.getAttribute("tiddler",this.getVariable("currentTiddler"));
 	 this.filter=this.getAttribute("filter",undefined);
- 	 this.passwordTiddler=this.getAttribute("passwordTiddler");
+ 	 this.passwordTiddler1=this.getAttribute("passwordTiddler1");
+ 	 this.passwordTiddler2=this.getAttribute("passwordTiddler2");
 	// Construct the child widgets
 	console.log(this.targetTiddler);
 		this.makeChildWidgets();
@@ -129,8 +130,8 @@ encryptTiddlerWidget.prototype.decryptFields = function(tiddler,password){
 		return false
 };
 
-encryptTiddlerWidget.prototype.getPassword = function(){
-	var tiddler=this.wiki.getTiddler(this.passwordTiddler);
+encryptTiddlerWidget.prototype.getPassword1 = function(){
+	var tiddler=this.wiki.getTiddler(this.passwordTiddler1);
 	if(tiddler){
 		var password=tiddler.fields.text;
 		this.saveTiddler(tiddler); //reset password tiddler
@@ -139,6 +140,28 @@ encryptTiddlerWidget.prototype.getPassword = function(){
 
 	return false
 };
+
+encryptTiddlerWidget.prototype.getPassword2 = function(){
+	var tiddler=this.wiki.getTiddler(this.passwordTiddler2);
+	if(tiddler){
+		var password=tiddler.fields.text;
+		this.saveTiddler(tiddler); //reset password tiddler
+		return password;
+	}
+
+	return false
+}
+
+encryptTiddlerWidget.prototype.getPassword = function(){
+    var password1 = this.getPassword1();
+    var password2 = this.getPassword2();
+
+    if (password1 == password2 || password2 == "") {
+        return password1;
+    }
+
+    return null;
+}
 
 // This function erases every field of a tiddler that is not standard and also
 // the text field
