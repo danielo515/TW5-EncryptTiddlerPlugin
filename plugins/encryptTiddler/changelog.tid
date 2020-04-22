@@ -1,5 +1,8 @@
 title: $:/plugins/danielo/encryptTiddler/Changelog
 
+!! V2.2
+* Added the need to type the password twice
+* Tested on tw 5.1.22
 !! V2.1
 * Added control panel.
 * Added ability to batch encrypt and decrypt tiddlers.
