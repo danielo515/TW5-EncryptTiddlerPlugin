@@ -1,0 +1,32 @@
+sudo: false
+dist: trusty
+language: node_js
+
+cache:
+  directories:
+    - node_modules
+
+addons:
+  chrome: stable
+
+node_js:
+  - "12"
+
+matrix:
+  fast_finish: true
+
+before_install:
+- npm i -g tiddlywiki
+
+script:
+  - tiddlywiki ./ --verbose --build
+after_script:
+  - du -h ./
+deploy:
+  provider: pages
+  skip_cleanup: true
+  local_dir: ./output
+  target_branch: gh_pages
+  github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
+  on:
+    branch: master
