@@ -1,18 +1,24 @@
 created: 20140406110705085
-creator: pepito
-modified: 20140608121510064
-modifier: pepito
+creator: danielo
 tags: $:/tags/Stylesheet encrypt export
 title: $:/plugins/danielo/encryptTiddler/styles
 type: text/plain
 
 .tw-password-field {
-	display: inline-block;
-	width: 55%;
-  font-size:1em;
-  line-height:0;
-  margin:0;
-	padding-left:7%;
+	display: block;
+	font-size:1em;
+	line-height:0;
+	margin: 0;
+}
+
+/*It is for use in combination with tc-block-dropdown */
+.tw-crypt-dropdown{
+	line-height:0;
+	padding: 8px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
 }
 
 .pc-batch-controls .tw-crypt-dropdown{
@@ -20,7 +26,7 @@ type: text/plain
 }
 
 .pc-batch-controls{
-		position:relative;
+	position:relative;
 }
 
 .pc-listItem-lock svg{
@@ -29,22 +35,17 @@ type: text/plain
 	fill: #aaaaaa;
 }
 
-/*It is for use in combination with tc-block-dropdown */
-.tw-crypt-dropdown{
-      line-height:0;
-			padding-left:5px;
-			}
-
 .tw-password-field input{
-       font-size:0.5em;
-
+	font-size:0.5em;
 }
 
 .tw-crypt-button {
 	display: inline-block;
-	width: 10%;
+	padding: 8px;
 }
 
 .tw-crypt-button button{
 	font-size:0.5em;
+	text-transform: uppercase;
+	border-radius: 4px;
 }
