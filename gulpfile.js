@@ -7,6 +7,12 @@ const path = require("path");
 sass.compiler = require("sass");
 const author = "danielo515";
 const plugin = "encryptTiddler";
+const src = "./src"
+const sources = {
+  sass: "./src/**/*.scss",
+  tiddlers: "./src/**/*.tid",
+  output: `./plugins/${author}/${plugin}`,
+}
 
 const tiddlywikiFiles = {
   tiddlers: [],
@@ -58,11 +64,16 @@ const annotateCss = () => {
 
 gulp.task("sass", function () {
   return gulp
-    .src("./src/**/*.scss")
+    .src(sources.sass)
     .pipe(sass().on("error", sass.logError))
     .pipe(annotateCss())
-    .pipe(gulp.dest("./plugins/encryptTiddler/styles"));
+    .pipe(gulp.dest(sources.output));
 });
+
+function tiddlers(){
+  return gulp.src(sources.tiddlers)
+  .pipe(gulp.dest(sources.output))
+}
 
 gulp.task("sass:watch", function () {
   gulp.watch("./sass/**/*.scss", ["sass"]);
