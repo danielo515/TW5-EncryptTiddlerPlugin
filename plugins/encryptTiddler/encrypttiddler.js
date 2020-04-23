@@ -1,5 +1,5 @@
 /*\
-title: $:/plugins/danielo/encryptTiddler/encrypttiddler.js
+title: $:/plugins/danielo515/encryptTiddler/encrypttiddler.js
 type: application/javascript
 module-type: widget
 

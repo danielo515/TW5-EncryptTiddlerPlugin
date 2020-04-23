@@ -1,4 +1,4 @@
-title: $:/plugins/danielo/encryptTiddler/ui/listItemTemplate
+title: $:/plugins/danielo515/encryptTiddler/ui/listItemTemplate
 
 <div class="tc-menu-list-item">
 <$link to={{!!title}}>

@@ -2,10 +2,10 @@ created: 20140405233000477
 creator: Danielo
 modified: 20200422065835622
 tags: $:/tags/ViewToolbar button encrypt export
-title: $:/plugins/danielo/encryptTiddler/crypt-button
+title: $:/plugins/danielo515/encryptTiddler/crypt-button
 type: text/vnd.tiddlywiki
 
-<span title="Encrypt/Decrypt tiddler"><$transclude tiddler="$:/plugins/danielo/encryptTiddler/openPopup"/>
+<span title="Encrypt/Decrypt tiddler"><$transclude tiddler="$:/plugins/danielo515/encryptTiddler/openPopup"/>
 </span><$encryptTiddler passwordTiddler1="$:/temp/password1" passwordTiddler2="$:/temp/password2"><$reveal state="$:/state/encrypt" type="match" text={{!!title}} animate="yes">
 <div class="tc-block-dropdown tw-crypt-dropdown">
 <div>
