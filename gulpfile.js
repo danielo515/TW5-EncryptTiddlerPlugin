@@ -61,7 +61,7 @@ gulp.task("sass", function () {
     .src("./src/**/*.scss")
     .pipe(sass().on("error", sass.logError))
     .pipe(annotateCss())
-    .pipe(gulp.dest("./css"));
+    .pipe(gulp.dest("./plugins/encryptTiddler/styles"));
 });
 
 gulp.task("sass:watch", function () {
