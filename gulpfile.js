@@ -3,6 +3,7 @@ const Sass = require("gulp-sass");
 const through = require("through2");
 const Vinyl = require("vinyl");
 const path = require("path");
+const tiddlyWiki = require('tiddlywiki').TiddlyWiki;
 
 Sass.compiler = require("sass");
 const author = "danielo515";
@@ -15,9 +16,6 @@ const sources = {
   output: `./plugins/${pluginName}`,
 };
 
-const tiddlywikiFiles = {
-  tiddlers: [],
-};
 
 const wikiFile = (name) => ({
   file: name,
@@ -63,6 +61,25 @@ const annotateCss = () => {
   return through.obj(iterate, flush);
 };
 
+const http = require('http');
+const _creates = http.createServer;
+let twServer;
+http.createServer = function createServerMock() {
+  twServer = _creates.apply(http,arguments)
+  return twServer
+}
+
+function runTiddlyWiki() {
+  var $tw = tiddlyWiki();
+  $tw.boot.argv = Array.prototype.slice.call(arguments, 0);
+  $tw.boot.boot(function(){
+    console.log(arguments)
+  });
+}
+
+// ==================================================
+// ====================== TASKS =====================
+// ==================================================
 function sass() {
   return gulp
     .src(sources.sass)
@@ -83,15 +100,26 @@ function pluginInfo() {
   return gulp.src(sources.pluginInfo).pipe(gulp.dest(sources.output));
 }
 
+function stopAnyRunningServer(cb) {
+  if(!twServer) return cb()
+  twServer.close(cb)
+}
+
+function serve(cb) {
+  runTiddlyWiki('./','--verbose','--server','8087')
+  cb()
+}
+
 const defaultTask = gulp.parallel(tiddlers, js, sass, pluginInfo);
 
 function watch(){
-  return gulp.watch('./src/**', defaultTask)
+  return gulp.watch('./src/**', gulp.series(defaultTask, stopAnyRunningServer, serve))
 }
 
 module.exports = {
   tiddlers,
   sass,
+  serve,
   watch,
   default:defaultTask, 
 };
