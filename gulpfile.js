@@ -28,7 +28,8 @@ const wikiFile = (name) => ({
  * For now, it only generates one file per file and folder, meaning that
  * multiple css files on the same folder will overwrite each other.
  */
-const annotateCss = through.obj(function (file, enc, next) {
+const annotateCss = () => {
+  return through.obj(function (file, enc, next) {
   const base = path.join(file.path,'../')
   var first = new Vinyl({
     base: base,
@@ -45,12 +46,13 @@ const annotateCss = through.obj(function (file, enc, next) {
   this.push(first);
   next();
 });
+}
 
 gulp.task("sass", function () {
   return gulp
     .src("./src/**/*.scss")
     .pipe(sass().on("error", sass.logError))
-    .pipe(annotateCss)
+    .pipe(annotateCss())
     .pipe(gulp.dest("./css"));
 });
 
