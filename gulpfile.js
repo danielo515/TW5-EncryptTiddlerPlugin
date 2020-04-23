@@ -83,12 +83,15 @@ function pluginInfo() {
   return gulp.src(sources.pluginInfo).pipe(gulp.dest(sources.output));
 }
 
+const defaultTask = gulp.parallel(tiddlers, js, sass, pluginInfo);
+
+function watch(){
+  return gulp.watch('./src/**', defaultTask)
+}
+
 module.exports = {
   tiddlers,
   sass,
-  default: gulp.parallel(tiddlers, js, sass, pluginInfo),
+  watch,
+  default:defaultTask, 
 };
-
-gulp.task("sass:watch", function () {
-  gulp.watch("./sass/**/*.scss", ["sass"]);
-});

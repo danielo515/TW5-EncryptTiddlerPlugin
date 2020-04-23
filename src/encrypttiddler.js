@@ -5,10 +5,6 @@ module-type: widget
 
 encrypttiddler widget
 
-```
-
-```
-
 
 \*/
 (function(){
