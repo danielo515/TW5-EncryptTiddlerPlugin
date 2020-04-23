@@ -19,7 +19,9 @@ caption: Batch Encryption
 </$button>
 
 
-<$edit-text tag="input" tiddler="$:/temp/password" placeholder="password" type="password" default="" col="4"/><$encryptTiddler passwordTiddler="$:/temp/password" filter={{$:/temp/encrypt/filter}}>
+<$edit-text tag="input" tiddler="$:/temp/password1" placeholder="password" type="password" default="" col="4"/>
+<$edit-text tag="input" tiddler="$:/temp/password2" placeholder="confirm password" type="password" default="" col="4"/>
+<$encryptTiddler passwordTiddler1="$:/temp/password1" passwordTiddler2="$:/temp/password2" filter={{$:/temp/encrypt/filter}}>
 <$button message="tw-encrypt-tiddler">
 Encrypt
 </$button>
