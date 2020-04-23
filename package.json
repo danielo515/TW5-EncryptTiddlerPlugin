@@ -24,6 +24,13 @@
   },
   "homepage": "https://github.com/danielo515/TW5-EncryptTiddlerPlugin#readme",
   "dependencies": {
+    "gulp-sass": "^4.0.2",
+    "sass": "^1.26.3",
     "tiddlywiki": "^5.1.22"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "through2": "^3.0.1",
+    "vinyl": "^2.2.0"
   }
 }
