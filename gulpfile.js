@@ -21,32 +21,40 @@ const wikiFile = (name) => ({
   },
 });
 
+const stringify = (o) => JSON.stringify(o, null, 2);
+
 /**
  * Generates a `tiddlywiki.files` for each css file that is on the stream where this is added.
- * `tiddlywiki.files` is a metadata file that  allows tiddlywiki to 
+ * `tiddlywiki.files` is a metadata file that  allows tiddlywiki to
  * load normal files (ej css) as if they were tiddlers.
  * For now, it only generates one file per file and folder, meaning that
  * multiple css files on the same folder will overwrite each other.
  */
 const annotateCss = () => {
-  return through.obj(function (file, enc, next) {
-  const base = path.join(file.path,'../')
-  var first = new Vinyl({
-    base: base,
-    path: path.join(base, "tiddlywiki.files"),
-    contents: Buffer.from(
-      JSON.stringify(
-        { tiddlers: [wikiFile(path.basename(file.path))] },
-        null,
-        2
-      )
-    ),
-  });
-  console.info("Generated tiddlywiki files for: ", file.path)
-  this.push(first);
-  next();
-});
-}
+  const cssFiles = {};
+  function iterate(file, enc, next) {
+    const folder = file.dirname;
+    cssFiles[folder] = cssFiles[folder] || { tiddlers: [] };
+    cssFiles[folder].tiddlers.push(wikiFile(file.relative));
+    console.info("Registering css file: ", file.relative);
+    next(null,file);
+  }
+  function flush(done) {
+    console.info("Tiddliwiki.files to generate: ", stringify(cssFiles));
+    Object.entries(cssFiles).forEach(([folder, tiddlyfiles]) => {
+      const dest = path.join(folder, "tiddlywiki.files");
+      console.info("Writting tiddlywiki.files: ", dest);
+      const file = new Vinyl({
+        base: folder,
+        path: dest,
+        contents: Buffer.from(stringify(tiddlyfiles)),
+      });
+      this.push(file);
+    });
+    done();
+  }
+  return through.obj(iterate, flush);
+};
 
 gulp.task("sass", function () {
   return gulp
