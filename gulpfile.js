@@ -1,18 +1,19 @@
 const gulp = require("gulp");
-const sass = require("gulp-sass");
+const Sass = require("gulp-sass");
 const through = require("through2");
 const Vinyl = require("vinyl");
 const path = require("path");
 
-sass.compiler = require("sass");
+Sass.compiler = require("sass");
 const author = "danielo515";
-const plugin = "encryptTiddler";
-const src = "./src"
+const pluginName = "encryptTiddler";
 const sources = {
   sass: "./src/**/*.scss",
   tiddlers: "./src/**/*.tid",
-  output: `./plugins/${author}/${plugin}`,
-}
+  js: "./src/**/*.js",
+  pluginInfo: "./src/plugin.info",
+  output: `./plugins/${pluginName}`,
+};
 
 const tiddlywikiFiles = {
   tiddlers: [],
@@ -22,7 +23,7 @@ const wikiFile = (name) => ({
   file: name,
   fields: {
     type: "text/vnd.tiddlywiki",
-    title: `$:/plugins/${author}/${plugin}/styles/${name}`,
+    title: `$:/plugins/${author}/${pluginName}/styles/${name}`,
     tags: "[[$:/tags/Stylesheet]]",
   },
 });
@@ -43,7 +44,7 @@ const annotateCss = () => {
     cssFiles[folder] = cssFiles[folder] || { tiddlers: [] };
     cssFiles[folder].tiddlers.push(wikiFile(file.relative));
     console.info("Registering css file: ", file.relative);
-    next(null,file);
+    next(null, file);
   }
   function flush(done) {
     console.info("Tiddliwiki.files to generate: ", stringify(cssFiles));
@@ -62,18 +63,31 @@ const annotateCss = () => {
   return through.obj(iterate, flush);
 };
 
-gulp.task("sass", function () {
+function sass() {
   return gulp
     .src(sources.sass)
-    .pipe(sass().on("error", sass.logError))
+    .pipe(Sass().on("error", Sass.logError))
     .pipe(annotateCss())
     .pipe(gulp.dest(sources.output));
-});
-
-function tiddlers(){
-  return gulp.src(sources.tiddlers)
-  .pipe(gulp.dest(sources.output))
 }
+
+function tiddlers() {
+  return gulp.src(sources.tiddlers).pipe(gulp.dest(sources.output));
+}
+
+function js() {
+  return gulp.src(sources.js).pipe(gulp.dest(sources.output));
+}
+
+function pluginInfo() {
+  return gulp.src(sources.pluginInfo).pipe(gulp.dest(sources.output));
+}
+
+module.exports = {
+  tiddlers,
+  sass,
+  default: gulp.parallel(tiddlers, js, sass, pluginInfo),
+};
 
 gulp.task("sass:watch", function () {
   gulp.watch("./sass/**/*.scss", ["sass"]);

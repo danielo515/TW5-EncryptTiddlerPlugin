@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "tiddlywiki ./ --verbose --server 8087 $:/core/save/all text/plain text/html '' '' 0.0.0.0",
-    "build": "tiddlywiki ./ --verbose --build"
+    "build": "yarn gulp && tiddlywiki ./ --verbose --build"
   },
   "repository": {
     "type": "git",
