@@ -21,6 +21,13 @@ const wikiFile = (name) => ({
   },
 });
 
+/**
+ * Generates a `tiddlywiki.files` for each css file that is on the stream where this is added.
+ * `tiddlywiki.files` is a metadata file that  allows tiddlywiki to 
+ * load normal files (ej css) as if they were tiddlers.
+ * For now, it only generates one file per file and folder, meaning that
+ * multiple css files on the same folder will overwrite each other.
+ */
 const annotateCss = through.obj(function (file, enc, next) {
   const base = path.join(file.path,'../')
   var first = new Vinyl({
