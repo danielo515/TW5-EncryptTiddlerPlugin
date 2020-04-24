@@ -1,5 +1,9 @@
 title: $:/plugins/danielo515/encryptTiddler/Changelog
 
+!! V2.3
+* No need to double type password for decrypt tiddlers
+* Fix bug with batch encryption
+* Code simplified
 !! V2.2
 * Added the need to type the password twice
 * Tested on tw 5.1.22
