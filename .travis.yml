@@ -12,11 +12,10 @@ node_js:
 matrix:
   fast_finish: true
 
-before_install:
-- npm i -g tiddlywiki
-
+install:
+- yarn
 script:
-  - tiddlywiki ./ --verbose --build
+  - yarn build
 after_script:
   - du -h ./
 deploy:

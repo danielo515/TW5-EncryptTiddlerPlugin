@@ -100,6 +100,11 @@ function pluginInfo() {
   return gulp.src(sources.pluginInfo).pipe(gulp.dest(sources.output));
 }
 
+function buildTw(cb) {
+  runTiddlyWiki('./','--verbose','--build','index')
+  cb()
+}
+
 function stopAnyRunningServer(cb) {
   if(!twServer) return cb()
   twServer.close(cb)
@@ -111,9 +116,10 @@ function serve(cb) {
 }
 
 const defaultTask = gulp.parallel(tiddlers, js, sass, pluginInfo);
+const build = gulp.series(defaultTask, buildTw)
 
 function watch(){
-  return gulp.watch('./src/**', gulp.series(defaultTask, stopAnyRunningServer, serve))
+  return gulp.watch('./src/**', {ignoreInitial: false}, gulp.series(defaultTask, stopAnyRunningServer, serve))
 }
 
 module.exports = {
@@ -121,5 +127,6 @@ module.exports = {
   sass,
   serve,
   watch,
+  build,
   default:defaultTask, 
 };
