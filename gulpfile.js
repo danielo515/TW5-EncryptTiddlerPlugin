@@ -26,7 +26,7 @@ const wikiFile = (name) => ({
   },
 });
 
-const stringify = (o) => JSON.stringify(o, null, 2);
+const stringify = (o) => JSON.stringify(o, null, 4);
 
 /**
  * Generates a `tiddlywiki.files` for each css file that is on the stream where this is added.
@@ -97,7 +97,18 @@ function js() {
 }
 
 function pluginInfo() {
-  return gulp.src(sources.pluginInfo).pipe(gulp.dest(sources.output));
+    return gulp
+        .src(sources.pluginInfo)
+        .pipe(
+            through.obj(function (file, enc, cb) {
+                const content = JSON.parse(file.contents.toString(enc));
+                content.released = new Date().toISOString();
+                file.contents = Buffer.from(stringify(content));
+                console.log(content);
+                cb(null, file);
+            })
+        )
+        .pipe(gulp.dest(sources.output));
 }
 
 function buildTw(cb) {
