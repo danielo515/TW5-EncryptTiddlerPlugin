@@ -1,0 +1,7 @@
+title: $:/plugins/danielo515/encryptTiddler/control-panel
+tags: $:/tags/ControlPanel
+caption: Encrypt Tiddlers
+
+\define prefix(name) $:/plugins/danielo515/encryptTiddler/control-panel/$name$
+
+<$macrocall $name="tabs" tabsList="[all[shadows+tiddlers]prefix[$:/plugins/danielo515/encryptTiddler/control-panel/]]" default=<<prefix "batch-encrypt">> state="$:/state/encryptTiddler/control-panel/tabs">>

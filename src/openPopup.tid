@@ -1,0 +1,9 @@
+created: 20140406151910358
+creator: Danielo
+modified: 20140608121417975
+modifier: Danielo515
+tags: button encrypt export
+title: $:/plugins/danielo515/encryptTiddler/openPopup
+type: text/vnd.tiddlywiki
+
+<$reveal state="$:/state/encrypt" type="nomatch" text={{!!title}} animate="no"><$button set="$:/state/encrypt" setTo={{!!title}} class="tc-btn-invisible">{{$:/plugins/danielo515/encryptTiddler/unlocked}}</$button></$reveal><$reveal state="$:/state/encrypt" type="match" text={{!!title}} animate="no"><$button set="$:/state/encrypt" setTo="" class="tc-btn-invisible">{{$:/plugins/danielo515/encryptTiddler/unlocked}}</$button></$reveal>

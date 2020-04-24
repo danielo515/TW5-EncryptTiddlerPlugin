@@ -1,17 +1,12 @@
 /*\
-title: $:/plugins/danielo/encryptTiddler/encrypttiddler.js
+title: $:/plugins/danielo515/encryptTiddler/encrypttiddler.js
 type: application/javascript
 module-type: widget
 
 encrypttiddler widget
 
-```
-
-```
-
 
 \*/
-(function(){
 
 /*jslint node: true, browser: true */
 /*global $tw: false */
@@ -70,35 +65,39 @@ encryptTiddlerWidget.prototype.refresh = function(changedTiddlers) {
 	}
 };
 
-encryptTiddlerWidget.prototype.getTiddlersToProcess = function(){
-	if(this.filter){ //we have a filter to work with
-		return this.wiki.filterTiddlers(this.filter);
-	}else{ //single tiddler case
-		var tiddler = this.wiki.getTiddler(this.tiddlerTitle);
-		return tiddler? [tiddler.fields.title] : [];
-	}
+encryptTiddlerWidget.prototype.getTiddlersToProcess = function () {
+    if (this.filter) {
+        //we have a filter to work with
+        return this.wiki.filterTiddlers(this.filter);
+    }
+    //single tiddler case
+    var tiddler = this.wiki.getTiddler(this.tiddlerTitle);
+    return tiddler ? [tiddler.fields.title] : [];
 };
 
-encryptTiddlerWidget.prototype.handleEncryptevent = function(event){
-	var password = this.getPassword();
-	var tiddlers = this.getTiddlersToProcess();
+encryptTiddlerWidget.prototype.handleEncryptevent = function (event) {
+    var password = this.getPassword(true);
+    var tiddlers = this.getTiddlersToProcess();
 
-	if(tiddlers.length > 0 && password){
-		var self = this;
-		$tw.utils.each(tiddlers, function(title){
-			var tiddler = self.wiki.getTiddler(title);
-			var fields={text:"!This is an encrypted Tiddler",
-								  encrypted:self.encryptFields(title,password)};
-			self.saveTiddler(tiddler,fields);
-		});
-
-	}else{
-		console.log("We did not find any tiddler to encrypt or password not set!")
-	}
+    if (tiddlers.length > 0 && password) {
+        var self = this;
+        $tw.utils.each(tiddlers, function (title) {
+            var tiddler = self.wiki.getTiddler(title);
+            var fields = {
+                text: "!This is an encrypted Tiddler",
+                encrypted: self.encryptFields(title, password),
+            };
+            self.saveTiddler(tiddler, fields);
+        });
+    } else {
+        console.log(
+            "We did not find any tiddler to encrypt or password not set!"
+        );
+    }
 };
 
 encryptTiddlerWidget.prototype.handleDecryptevent = function(event){
-	var password =this.getPassword();
+	var password =this.getPassword(false);
 	var tiddlers = this.getTiddlersToProcess();
 
 	if(tiddlers.length > 0 && password){
@@ -121,28 +120,19 @@ encryptTiddlerWidget.prototype.encryptFields = function (title,password){
 
 };
 
-encryptTiddlerWidget.prototype.decryptFields = function(tiddler,password){
-		var JSONfields =$tw.crypto.decrypt(tiddler.fields.encrypted,password);
-		if(JSONfields!==null){
-			return JSON.parse(JSONfields);
-		}
-		console.log("Error decrypting "+tiddler.fields.title+". Probably bad password")
-		return false
+encryptTiddlerWidget.prototype.decryptFields = function (tiddler, password) {
+    var JSONfields = $tw.crypto.decrypt(tiddler.fields.encrypted, password);
+    if (JSONfields !== null) {
+        return JSON.parse(JSONfields);
+    }
+    console.log(
+        "Error decrypting " + tiddler.fields.title + ". Probably bad password"
+    );
+    return false;
 };
 
-encryptTiddlerWidget.prototype.getPassword1 = function(){
-	var tiddler=this.wiki.getTiddler(this.passwordTiddler1);
-	if(tiddler){
-		var password=tiddler.fields.text;
-		this.saveTiddler(tiddler); //reset password tiddler
-		return password;
-	}
-
-	return false
-};
-
-encryptTiddlerWidget.prototype.getPassword2 = function(){
-	var tiddler=this.wiki.getTiddler(this.passwordTiddler2);
+encryptTiddlerWidget.prototype.getPasswordFromTiddler = function(title){
+	var tiddler=this.wiki.getTiddler(title);
 	if(tiddler){
 		var password=tiddler.fields.text;
 		this.saveTiddler(tiddler); //reset password tiddler
@@ -152,11 +142,12 @@ encryptTiddlerWidget.prototype.getPassword2 = function(){
 	return false
 }
 
-encryptTiddlerWidget.prototype.getPassword = function(){
-    var password1 = this.getPassword1();
-    var password2 = this.getPassword2();
+encryptTiddlerWidget.prototype.getPassword = function(confirm){
+	var password1 = this.getPasswordFromTiddler(this.passwordTiddler1);
+	if(!confirm) return password1
+    var password2 = this.getPasswordFromTiddler(this.passwordTiddler2);
 
-    if (password1 == password2 || password2 == "") {
+    if (password1 === password2) {
         return password1;
     }
 
@@ -178,5 +169,3 @@ encryptTiddlerWidget.prototype.clearNonStandardFields =function(tiddler) {
 };
 
 exports.encryptTiddler = encryptTiddlerWidget;
-
-})();

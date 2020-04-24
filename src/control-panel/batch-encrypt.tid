@@ -1,9 +1,9 @@
-title: $:/plugins/danielo/encryptTiddler/control-panel/batch-encrypt
+title: $:/plugins/danielo515/encryptTiddler/control-panel/batch-encrypt
 caption: Batch Encryption
 
 \define lingo-base() $:/language/Search/
 <<lingo Filter/Hint>>
-{{$:/plugins/danielo/encryptTiddler/language/batch}}
+{{$:/plugins/danielo515/encryptTiddler/language/batch}}
 
 <$linkcatcher to="$:/temp/encrypt/filter">
 
@@ -47,7 +47,7 @@ Decrypt
 <$set name="resultCount" value="""<$count filter={{$:/temp/encrypt/filter}}/>""">
 <div class="tc-search-results">
 <<lingo Filter/Matches>>
-<$list filter={{$:/temp/encrypt/filter}} template="$:/plugins/danielo/encryptTiddler/ui/listItemTemplate"/>
+<$list filter={{$:/temp/encrypt/filter}} template="$:/plugins/danielo515/encryptTiddler/ui/listItemTemplate"/>
 </div>
 </$set>
 </$reveal>
