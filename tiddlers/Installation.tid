@@ -7,3 +7,5 @@ type: text/vnd.tiddlywiki
 Just drag and drop the following ling to your tiddlywiki:
 
 [[$:/plugins/danielo515/encryptTiddler]]
+
+If you have the previous version installed (`$:/plugins/danielo/encryptTiddler`) please delete it, it is deprecated.
