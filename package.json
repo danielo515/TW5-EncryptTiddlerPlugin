@@ -6,8 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "tiddlywiki ./ --verbose --server 8087 $:/core/save/all text/plain text/html '' '' 0.0.0.0",
-    "watch": "gulp watch",
-    "build": "gulp build"
+    "watch": "yarn clean && gulp watch",
+    "build": "gulp build",
+    "clean": "rm -rf ./plugins"
   },
   "repository": {
     "type": "git",
