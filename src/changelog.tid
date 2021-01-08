@@ -1,5 +1,7 @@
 title: $:/plugins/danielo515/encryptTiddler/Changelog
 
+!! V2.4
+* Added caption and description to the encrypt button
 !! V2.3
 * No need to double type password for decrypt tiddlers
 * Fix bug with batch encryption
