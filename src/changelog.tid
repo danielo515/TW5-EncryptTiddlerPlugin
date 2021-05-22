@@ -1,5 +1,8 @@
 title: $:/plugins/danielo515/encryptTiddler/Changelog
 
+!! V2.5
+* Added settings tab under ControlPanel
+* Added the ability to customize the enctypted tiddler text body
 !! V2.4
 * Added caption and description to the encrypt button
 !! V2.3

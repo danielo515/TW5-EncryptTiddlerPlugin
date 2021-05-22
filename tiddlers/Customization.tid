@@ -1,0 +1,18 @@
+created: 20210523062615182
+modified: 20210523062615182
+tags: 
+title: Customization
+type: text/vnd.tiddlywiki
+
+
+In order to customize some aspects of the widget behavior there is a `Settings` tab under this plugin's control pannel tab.
+
+There you will be able to modify (for now) the placeholder text of the encrypted tiddlers.
+This is just a convenience mechanism to edit the contents of the tiddler `$:/plugins/danielo515/encryptTiddler/placeholderText`. You can also edit this tiddler manually.
+
+<$button>
+<$action-setfield $tiddler="$:/state/tab-1749438307" $field="text" $value="$:/plugins/danielo515/encryptTiddler/control-panel"/>
+<$action-setfield $tiddler="$:/state/encryptTiddler/control-panel/tabs-1723749573" $field="text" $value="$:/plugins/danielo515/encryptTiddler/control-panel/settings"/>
+<$action-navigate $to="$:/ControlPanel"/>
+Go to Control Panel "Encryption Settings" tab
+</$button>

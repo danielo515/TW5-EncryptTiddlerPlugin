@@ -1,0 +1,10 @@
+{
+    "files.exclude": {
+        "./plugins/encrypTiddler/": true
+    },
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/*.code-search": true,
+        "./plugins/encrypTiddler/": true
+    }
+}
