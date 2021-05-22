@@ -1,0 +1,14 @@
+title: $:/plugins/danielo515/encryptTiddler/control-panel/settings
+caption: Settings
+
+\define lingo-base() $:/language/Search/
+<<lingo Filter/Hint>>
+{{$:/plugins/danielo515/encryptTiddler/language/batch}}
+
+!! Encrypt placeholder text
+Which text to use for the body of the encrypted tiddlers.
+
+<div class="tc-search tc-advanced-search">
+<!-- settings is a macro defined on the parent tiddler  -->
+<$edit-text tag="input" tiddler=<<settings "placeholderText">> default="" />
+</div>
