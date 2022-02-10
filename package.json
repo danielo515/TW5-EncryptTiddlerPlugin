@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/danielo515/TW5-EncryptTiddlerPlugin#readme",
   "dependencies": {
-    "node-sass": "6",
+    "node-sass": "7",
     "tiddlywiki": "^5.1.22"
   },
   "devDependencies": {
